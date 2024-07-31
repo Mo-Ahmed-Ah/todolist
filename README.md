@@ -3,15 +3,15 @@
 <h3>phone number : +201033833292</h3>
 <ul>
   <li>
-    <a href="https://www.facebook.com/profile.php?id=100081493688072" target="_blank">FaceBook</a>
+    <a href="https://www.facebook.com/profile.php?id=100081493688072" >FaceBook</a>
   </li>
   <li>
-    <a href="" target="_blank">instagram</a>
+    <a href="" >instagram</a>
   </li>
   <li>
-    <a href="" target="_blank">Linkedin</a>
+    <a href="" >Linkedin</a>
   </li>
   <li>
-    <a href="" target="_blank">WhatsApp</a>
+    <a href="https://wa.me/201033833292" >WhatsApp</a>
   </li>
 </ul>
