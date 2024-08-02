@@ -47,7 +47,7 @@ p {
     flex-direction: column;
     justify-content: space-between;
     border-radius: 1.5rem;
-    background: var(--gray);
+    background: var(--white);
     padding: 2.5rem;
     width: 90%;
     max-width: 400px;
