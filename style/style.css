@@ -1,25 +1,32 @@
 :root {
-    --gradient: linear-gradient(180deg, rgba(45, 112, 253, 0.73) 0%, #163e92 100%);
-    --dark: #001747;
-    --gray: #b1bacb;
-    --gray-border: rgba(210, 210, 210, 0.75);
-    --gray-light: #eeeeee;
-    --gray-dark: #405175;
-    --blue: #2d70fd;
-    --green: #00d8a7;
+    --primary-blue: #1e3a8a;
+    /* Dark Blue */
+    --secondary-blue: #2563eb;
+    /* Medium Blue */
+    --light-blue: #dbeafe;
+    /* Light Blue */
     --white: #ffffff;
-    --shadow-blue: rgba(36, 40, 186, 0.52);
+    --shadow-blue: rgba(30, 58, 138, 0.5);
+    --shadow-blue-dark: rgba(30, 58, 138, 0.7);
+    --gradient-light: linear-gradient(135deg, #1e3a8a, #2563eb);
+    --gradient-dark: linear-gradient(135deg, #0d6efd, #4f9eff);
 }
 
 body {
     margin: 0;
     height: 100vh;
-    background: var(--gradient);
+    background: var(--gradient-light);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-family: 'Arial', sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: background 0.3s, color 0.3s;
+}
+
+body.night-mode {
+    background: var(--gradient-dark);
+    color: var(--white);
 }
 
 h2,
@@ -27,41 +34,59 @@ p {
     margin: 0;
 }
 
-.btn {
+.btn,
+.deleteButton,
+.toggleNightModeButton {
     color: var(--white);
     font-size: 1rem;
-    padding: 0.6rem 1.4rem;
-    border-radius: 0.3rem;
-    background-color: var(--blue);
+    padding: 0.8rem 1.6rem;
+    border-radius: 0.5rem;
+    background: var(--secondary-blue);
     border: none;
     cursor: pointer;
-    transition: background-color 0.3s;
+    box-shadow: 0 4px 8px var(--shadow-blue);
+    transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
 }
 
-.btn:hover {
-    background-color: #1a54c6;
+.btn:hover,
+.deleteButton:hover,
+.toggleNightModeButton:hover {
+    background: #1d4ed8;
+    box-shadow: 0 6px 12px var(--shadow-blue-dark);
+    transform: translateY(-2px);
 }
 
 .todo {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    border-radius: 1.5rem;
+    border-radius: 1rem;
     background: var(--white);
-    padding: 2.5rem;
+    padding: 2rem;
     width: 90%;
     max-width: 400px;
-    box-shadow: 0 1rem 2rem rgba(0, 23, 71, 0.15);
+    box-shadow: 0 4px 8px var(--shadow-blue);
     max-height: 450px;
+    transition: background 0.3s, color 0.3s;
+}
+
+.todo.night-mode {
+    background: var(--primary-blue);
+    color: var(--white);
+    border: 0.1rem solid var(--secondary-blue);
 }
 
 h2 {
     text-transform: uppercase;
     text-align: center;
-    color: var(--dark);
+    color: var(--primary-blue);
     margin-bottom: 1rem;
     font-size: 1.5rem;
     font-weight: bold;
+}
+
+body.night-mode h2 {
+    color: var(--white);
 }
 
 .input {
@@ -78,24 +103,38 @@ h2 {
     font-size: 1rem;
     transition: all 0.3s;
     outline: none;
-    caret-color: var(--gray-dark);
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    caret-color: var(--primary-blue);
+    box-shadow: 0 0 5px var(--shadow-blue);
+}
+
+body.night-mode .input-field {
+    background-color: var(--primary-blue);
+    border-color: var(--secondary-blue);
+    color: var(--white);
 }
 
 .input-field:focus {
-    box-shadow: 0 0 5px 5px var(--shadow-blue);
+    box-shadow: 0 0 5px 5px var(--shadow-blue-dark);
 }
 
 input[type="text"]::placeholder {
-    color: var(--gray);
+    color: var(--light-blue);
+}
+
+body.night-mode input[type="text"]::placeholder {
+    color: var(--white);
 }
 
 .counter-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: var(--gray);
+    color: var(--primary-blue);
     margin-top: 1.5rem;
+}
+
+body.night-mode .counter-container {
+    color: var(--white);
 }
 
 .todoList {
@@ -104,24 +143,38 @@ input[type="text"]::placeholder {
     list-style: none;
     overflow-y: scroll;
     height: 15rem;
-    border-top: 1px solid var(--gray-light);
-    border-bottom: 1px solid var(--gray-light);
+    border: none;
     margin-top: 1rem;
+    transition: border-color 0.3s;
+}
+
+body.night-mode .todoList {
+    border: none;    
 }
 
 .todoList li {
     display: flex;
+    justify-content: space-between;
     align-items: center;
     padding: 1rem;
-    border-bottom: 1px solid var(--gray-light);
+    border-bottom: 1px solid var(--light-blue);
     position: relative;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    /* إضافة تأثير التلاشي */
+    transition: opacity 0.3s ease, transform 0.3s ease, background 0.3s, color 0.3s;
+    background: var(--white);
+    border-radius: 0.5rem;
+    margin: 5px;
+    border: 2px solid var(--primary-blue);
+    font-size: large;
+    box-shadow: 0 5px 4px var(--shadow-blue);
 }
 
-.todoList li:last-child {
-    border-bottom: none;
+body.night-mode .todoList li {
+    background: var(--primary-blue);
+    border-color: var(--light-blue);
+    color: var(--white);
 }
+
+
 
 input[type="checkbox"] {
     display: none;
@@ -145,10 +198,15 @@ input[type="checkbox"] {
     left: 0;
     top: 50%;
     transform: translateY(-50%);
-    border: 0.1rem solid var(--gray-border);
+    border: 0.1rem solid var(--light-blue);
     border-radius: 0.3rem;
     background-color: var(--white);
     transition: all 0.3s;
+}
+
+body.night-mode .checkbox-label:before {
+    background-color: var(--primary-blue);
+    border-color: var(--secondary-blue);
 }
 
 input[type="checkbox"]:checked+.checkbox-label:before {
@@ -157,27 +215,29 @@ input[type="checkbox"]:checked+.checkbox-label:before {
     justify-content: center;
     align-items: center;
     color: var(--white);
-    background-color: var(--green);
-    border: 0.1rem solid var(--green);
+    background-color: var(--secondary-blue);
+    border: 0.1rem solid var(--secondary-blue);
 }
 
 .completed .checkbox-label {
     text-decoration: line-through;
-    color: var(--gray);
+    color: var(--light-blue);
 }
 
-/* إضافة تأثير التلاشي */
-.fade-out {
-    opacity: 0;
-    transform: translateX(-10px);
+body.night-mode .completed .checkbox-label {
+    color: var(--white);
 }
 
-.hidden {
-    display: none;
-    /* إخفاء العنصر بعد التلاشي */
+.time-label {
+    margin-left: auto;
+    color: var(--primary-blue);
 }
 
-footer {
+body.night-mode .time-label {
+    color: var(--white);
+}
+
+.footer {
     display: flex;
     flex-direction: row;
     gap: 1.8rem;
@@ -185,25 +245,31 @@ footer {
     padding: 1.2rem;
     border-radius: 0.5rem;
     margin-top: 2rem;
+    box-shadow: 0 4px 8px var(--shadow-blue);
+}
+
+body.night-mode .footer {
+    background-color: var(--primary-blue);
+    color: var(--white);
 }
 
 .made-by,
-.auther,
+.author,
 .copy {
     display: inline;
     font-size: 0.9rem;
 }
 
-.copy{
+.copy {
     color: #00000046;
 }
 
 .made-by {
-    color: var(--gray-dark);
+    color: var(--primary-blue);
 }
 
-.auther {
-    color: var(--blue);
+.author {
+    color: var(--secondary-blue);
     font-weight: bold;
 }
 
@@ -221,10 +287,18 @@ footer {
 }
 
 .scroll::-webkit-scrollbar-thumb {
-    background-color: var(--blue);
+    background-color: var(--secondary-blue);
     border-radius: 0.5rem;
 }
 
+body.night-mode .scroll::-webkit-scrollbar-thumb {
+    background-color: var(--white);
+}
+
 .scroll::-webkit-scrollbar-track {
-    display: none;
+    background: var(--light-blue);
+}
+
+body.night-mode .scroll::-webkit-scrollbar-track {
+    background: var(--primary-blue);
 }
